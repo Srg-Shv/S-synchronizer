@@ -58,17 +58,29 @@ def sync_directories(source_dir, dest_dir):
             logger.error(f"Failed to remove '{dest_path}': {e}")
 
 if __name__ == "__main__":
-    # Configure logging
-    logging.basicConfig(
-        filename='sync.log',
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s'
-    )
+    # Configure logging with UTF-8 encoding and custom formatter
     logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
+
+    # Create file handler with UTF-8 encoding
+    fh = logging.FileHandler('sync.log', encoding='utf-8')
+    fh.setLevel(logging.INFO)
+
+    # Create formatter that outputs Windows-style paths
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+    fh.setFormatter(formatter)
+    logger.addHandler(fh)
+
+    # Optionally, add console handler if you want logs to appear in the console as well
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.INFO)
+    ch.setFormatter(logging.Formatter('%(message)s'))
+    logger.addHandler(ch)
 
     # Read source and destination directories from an external file
     try:
-        with open('directories.txt', 'r') as file:
+        with open('directories.txt', 'r', encoding='utf-8') as file:
             lines = file.read().splitlines()
             if len(lines) < 2:
                 logger.error("The 'directories.txt' file must contain at least two lines: source and destination directories.")
