@@ -1,7 +1,3 @@
-Certainly! Below is a short description of the directory synchronization script along with instructions on how to use it.
-
----
-
 ## **Description**
 
 This Python script synchronizes two directories by ensuring that the destination directory mirrors the source directory. It performs the following actions:
