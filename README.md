@@ -103,6 +103,3 @@ After running the script, the destination directory `/home/user/documents/backup
 
 This script provides a straightforward way to keep two directories in sync, making it useful for backups and mirroring data. By reading the directory paths from an external file and logging all activities, it offers flexibility and transparency in its operations.
 
----
-
-**Feel free to reach out if you have any questions or need further assistance!**
